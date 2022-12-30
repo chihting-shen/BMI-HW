@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, jsonify, json
 app = Flask(__name__)
 
 
-@app.route('/data')
+@app.route('/')
 def webapi():
     return render_template('data.html')
 
