@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../static/jquery-3.6.0.min.js"></script>
+    <title>BMI計算簡易網</title>
+</head>
+
+<body>
+    <h1>計算BMI</h1>
+
+    <!-- <h2>API : POST</h2> -->
+
+    <p>身高(cm) :
+        <input id="height" name="height" type="number" />
+    </p>
+    <p>體重(kg) :
+        <input id="weight" name="weight" type="number" />
+    </p>
+    <button id="btnCalc">計算</button>
+    <hr>
+
+    <h3>您的BMI值為 : </h3>
+    <div id="bmi"></div>
+
+    <script>
+        $(function () {
+            var $bmi = $('#bmi');
+            var $btnCalc = $('#btnCalc');
+            var $height = $('#height');
+            var $weight = $('#weight');
+
+            $btnCalc.off('click').on('click', function () {
+                $.ajax({
+                    url: '/data/message',
+                    data: {
+                        "height": $height.val(),
+                        "weight": $weight.val(),
+                    },
+                    type: 'POST',
+                    success: function (data) {
+                        $bmi.append(data.result);
+                    },
+                    error: function (xhr) {
+                        alert('Ajax request 發生錯誤');
+                    }
+                });
+
+            });
+
+
+        });
+    </script>
+</body>
+
+</html>
