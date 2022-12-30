@@ -1,1 +1,1 @@
-web gunicorn ajax.py
+web: gunicorn ajax:app
